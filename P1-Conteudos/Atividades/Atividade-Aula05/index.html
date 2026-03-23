@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Protótipo UX - App Ônibus</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; background: #eee; }
+        .smartphone { width: 300px; height: 500px; background: white; border: 12px solid #333; border-radius: 20px; position: relative; overflow: hidden; }
+        .screen { display: none; padding: 20px; height: 100%; }
+        .active { display: block; }
+        .btn { background: #007bff; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+        .map-placeholder { background: #ddd; height: 200px; display: flex; align-items: center; justify-content: center; }
+        .status-lotacao { color: orange; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="smartphone">
+        <div id="tela1" class="screen active">
+            <h3>📍 Pontos Próximos</h3>
+            <div class="map-placeholder">Mapa Carregando...</div>
+            <button class="btn" onclick="navegar('tela2')">Buscar Linha</button>
+        </div>
+
+        <div id="tela2" class="screen">
+            <h3>🔍 Buscar Linha</h3>
+            <input type="text" placeholder="Ex: 205 - Centro" style="width: 90%; padding: 5px;">
+            <button class="btn" onclick="navegar('tela3')">Ver Horários</button>
+        </div>
+
+        <div id="tela3" class="screen">
+            <h3>Bus 205</h3>
+            <p>Chegada em: <b>5 min</b></p>
+            <p>Lotação: <span class="status-lotacao">Média (Sentado)</span></p>
+            <button class="btn" onclick="navegar('tela4')">Ativar Lembrete</button>
+        </div>
+
+        <div id="tela4" class="screen">
+            <h3 style="color: green;">✔️ Alerta Ativado!</h3>
+            <p>Avisaremos quando o ônibus estiver a 500m do ponto.</p>
+            <button class="btn" onclick="navegar('tela1')">Voltar</button>
+        </div>
+    </div>
+
+    <script>
+        function navegar(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+</html>
